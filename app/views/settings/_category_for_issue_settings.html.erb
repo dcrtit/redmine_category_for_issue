@@ -1,0 +1,34 @@
+<table>
+  <tbody>
+    <tr>
+      <th>Категории обслуживания</th>
+      <td>
+        <input type="text" id="settings_category_list_cats" 
+                           value="<%= settings['category_list_cats'].present? ? settings['category_list_cats'] : 'I Категория&II Категория' %>" 
+                           name="settings[category_list_cats]" >
+      </td>
+    </tr>
+    <tr>
+      <th>Тип обслуживания</th>
+      <td>
+        <textarea rows="10" cols="100" id="settings_category_list_tips" name="settings[category_list_tips]"><%= settings['category_list_tips'].present? ? settings['category_list_tips'] : 'Форс-мажор;Торговое оборудование;Холодильное оборудование;Инженерное оборудование;Освещение внутреннее и наружное&Перемещение не крупногабаритного оборудования;Помывка;Мелкий ремонт мебели;Улучшения не требующие дополнительного согласования;Монтаж баннера, замена РИМ;Освещение (замена ламп)' %></textarea>
+      </td>
+    </tr>
+    <tr>
+      <th>ID поля "категории"</th>
+      <td>
+        <input type="text" id="settings_category_list_id_cats" 
+                           value="<%= settings['category_list_id_cats'] %>" 
+                           name="settings[category_list_id_cats]" >
+      </td>
+    </tr>
+    <tr>
+      <th>ID поля "тип"</th>
+      <td>
+        <input type="text" id="settings_category_list_id_tips" 
+                           value="<%= settings['category_list_id_tips'] %>" 
+                           name="settings[category_list_id_tips]" >
+      </td>
+    </tr>
+  </tbody>
+</table>
