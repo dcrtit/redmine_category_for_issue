@@ -1,26 +1,26 @@
 <%= javascript_tag do %>
-  <% if Setting.plugin_category_for_issue.present? %>
+  <% if Setting.plugin_redmine_category_for_issue.present? %>
     jQuery(document).ready(function(){
       <% cat_num = 0 %>
       var tips = []
-      <% Setting.plugin_category_for_issue["category_list_cats"].split("&").each_with_index do |tips, index| %>
+      <% Setting.plugin_redmine_category_for_issue["category_list_cats"].split("&").each_with_index do |tips, index| %>
         var tip = []
-        <%  Setting.plugin_category_for_issue["category_list_tips"].split("&")[index].split(";").each do |tip| %>
+        <%  Setting.plugin_redmine_category_for_issue["category_list_tips"].split("&")[index].split(";").each do |tip| %>
           tip.push('<%= tip %>')
         <% end %>
         tips.push(tip)
       <% end %>
 
 
-      $('#issue_custom_field_values_<%= Setting.plugin_category_for_issue["category_list_id_cats"] %>').replaceWith('<select name="issue[custom_field_values][<%= Setting.plugin_category_for_issue["category_list_id_cats"] %>]" id="issue_custom_field_values_<%= Setting.plugin_category_for_issue["category_list_id_cats"] %>"><% Setting.plugin_category_for_issue["category_list_cats"].split("&").each_with_index do |tips, index| %><option data-index="<%= index %>" value="<%= tips %>" <% if @issue.custom_field_value(Setting.plugin_category_for_issue["category_list_id_cats"]).present? && @issue.custom_field_value(Setting.plugin_category_for_issue["category_list_id_cats"]) == tips %>selected="selected"<% cat_num = index %><% end %> ><%= tips %></option><% end %></select>');
+      $('#issue_custom_field_values_<%= Setting.plugin_redmine_category_for_issue["category_list_id_cats"] %>').replaceWith('<select name="issue[custom_field_values][<%= Setting.plugin_redmine_category_for_issue["category_list_id_cats"] %>]" id="issue_custom_field_values_<%= Setting.plugin_redmine_category_for_issue["category_list_id_cats"] %>"><% Setting.plugin_redmine_category_for_issue["category_list_cats"].split("&").each_with_index do |tips, index| %><option data-index="<%= index %>" value="<%= tips %>" <% if @issue.custom_field_value(Setting.plugin_redmine_category_for_issue["category_list_id_cats"]).present? && @issue.custom_field_value(Setting.plugin_redmine_category_for_issue["category_list_id_cats"]) == tips %>selected="selected"<% cat_num = index %><% end %> ><%= tips %></option><% end %></select>');
 
         
     
-      $('#issue_custom_field_values_<%= Setting.plugin_category_for_issue["category_list_id_tips"] %>').replaceWith('<select name="issue[custom_field_values][<%= Setting.plugin_category_for_issue["category_list_id_tips"] %>]" id="issue_custom_field_values_<%= Setting.plugin_category_for_issue["category_list_id_tips"] %>"><% Setting.plugin_category_for_issue["category_list_tips"].split("&")[cat_num].split(";").each do |tips| %><option value="<%= tips %>" <% if @issue.custom_field_value(Setting.plugin_category_for_issue["category_list_id_tips"]).present? && @issue.custom_field_value(Setting.plugin_category_for_issue["category_list_id_tips"]) == tips %>selected="selected"<% end %> ><%= tips %></option><% end %></select>');
+      $('#issue_custom_field_values_<%= Setting.plugin_redmine_category_for_issue["category_list_id_tips"] %>').replaceWith('<select name="issue[custom_field_values][<%= Setting.plugin_redmine_category_for_issue["category_list_id_tips"] %>]" id="issue_custom_field_values_<%= Setting.plugin_redmine_category_for_issue["category_list_id_tips"] %>"><% Setting.plugin_redmine_category_for_issue["category_list_tips"].split("&")[cat_num].split(";").each do |tips| %><option value="<%= tips %>" <% if @issue.custom_field_value(Setting.plugin_redmine_category_for_issue["category_list_id_tips"]).present? && @issue.custom_field_value(Setting.plugin_redmine_category_for_issue["category_list_id_tips"]) == tips %>selected="selected"<% end %> ><%= tips %></option><% end %></select>');
       
-      $('#issue_custom_field_values_<%= Setting.plugin_category_for_issue["category_list_id_cats"] %>').on('input', function (event) {
+      $('#issue_custom_field_values_<%= Setting.plugin_redmine_category_for_issue["category_list_id_cats"] %>').on('input', function (event) {
         var index = $(this).find(':selected').attr('data-index'),
-          secondSelect = $('#issue_custom_field_values_<%= Setting.plugin_category_for_issue["category_list_id_tips"] %>')
+          secondSelect = $('#issue_custom_field_values_<%= Setting.plugin_redmine_category_for_issue["category_list_id_tips"] %>')
         secondSelect.empty()
         for (var i=0; i<tips[index].length; i++) {
           var option = document.createElement('option')

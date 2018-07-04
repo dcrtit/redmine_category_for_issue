@@ -1,4 +1,4 @@
-Redmine::Plugin.register :category_for_issue do
+Redmine::Plugin.register :redmine_category_for_issue do
   name 'Category For Issue plugin'
   author 'Decart Agency'
   description 'This is a plugin for Redmine'
